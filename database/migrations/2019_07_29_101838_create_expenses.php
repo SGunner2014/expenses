@@ -15,6 +15,12 @@ class CreateExpenses extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->tinyInteger("type"); // 1 = child, 2 = one-off, 3 = recurring
+            $table->tinyInteger("category"); // 1 = food and drink, 2 = toys and equip., etc.
+            $table->bigInteger("date")->nullable();
+            $table->text("details")->nullable();
+            $table->integer("amount");
+            $table->bigInteger("childid")->references("id")->on("children")->nullable();
             $table->timestamps();
         });
     }

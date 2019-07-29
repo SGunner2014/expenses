@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Child extends Model
+class Expense extends Model
 {
     //
-
-    protected $guarded = [];
 }

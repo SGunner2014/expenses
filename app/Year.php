@@ -34,6 +34,7 @@ class Year extends Model
                 $month->month = $i + 1;
                 $month->name = $months[$i];
                 $month->save();
+                $month->createAssociatedWeeks();
             }
         }
     }

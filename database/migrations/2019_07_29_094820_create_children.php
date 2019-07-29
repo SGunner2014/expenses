@@ -15,6 +15,10 @@ class CreateChildren extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text("name");
+            $table->bigInteger("startDate");
+            $table->bigInteger("endDate")->nullable();
+            $table->boolean("active")->default(true);
             $table->timestamps();
         });
     }

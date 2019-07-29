@@ -21,3 +21,4 @@ Auth::routes();
 
 Route::resource("/years", "YearController");
 Route::resource("/years/{year}/months", "MonthsController");
+Route::resource("/children", "ChildrenController");
