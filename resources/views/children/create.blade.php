@@ -26,6 +26,10 @@
                 <input type="checkbox" class="form-check-input" id="active" name="active" checked>
                 <label class="form-check-label" for="active">Child is Active</label>
             </div>
+            <div class="form-group">
+                <label for="foodCosts">Food/Drink Costs (weekly)*</label>
+                <input class="form-control" type="number" step=".01" id="foodCosts" name="foodCosts" value="{{old("foodCost")}}" required>
+            </div>
             <button class="btn btn-primary btn-md mt-2">Register Child</button>
         </form>
     </div>

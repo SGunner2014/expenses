@@ -24,9 +24,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($week->getChildExpenses() as $child)
-                    <th scope="col">N/A</th>
-                    <th scope="col">{{$child->name}}</th>
+                @foreach($week->getChildExpenses() as $childExpenses)
+                    <tr>
+                        <td>N/A</td>
+                        <td>{{$childExpenses[0]}}</td>
+                        <td>£{{number_format($childExpenses[1]->amount, 2, ".", "")}}</td>
+                        <td>£{{number_format($childExpenses[2]->amount, 2, ".", "")}}</td>
+                        <td>£{{number_format($childExpenses[3]->amount, 2, ".", "")}}</td>
+                        <td>£{{number_format($childExpenses[4]->amount, 2, ".", "")}}</td>
+                        <td>£{{number_format($childExpenses[5]->amount, 2, ".", "")}}</td>
+                        <td>£{{number_format($childExpenses[6]->amount, 2, ".", "")}}</td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

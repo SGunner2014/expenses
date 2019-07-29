@@ -10,16 +10,29 @@ class Week extends Model
      * Returns all expenses for children within the week.
      */
     public function getChildExpenses() {
-        $expenses = Expense::where("type", "=", "1")->where("weekid", "=", $this->id);
+        // We need to find all the expenses for this period and then we need to return these in a sorted array, by each child
+        $weeksExpenses = Expense::where("weekid", "=", $this->id);
+        $childrenExpenses = $weeksExpenses->where("type", "=", 1);
+        $groupedChildrenExpenses = $childrenExpenses->get()->groupBy("childid");
 
         $toReturn = [];
-        foreach ($expenses as $expense) {
-            if (!array_key_exists($expense["childid"], $toReturn)) {
-                $toReturn[$expense["childid"]] = [];
-                $toReturn["name"] = Child::where("id", "=", $expense["childid"])->get()->first()->name;
+
+        foreach($groupedChildrenExpenses as $childExpenses) {
+            $temp = [];
+            $temp[0] = Child::where("id", "=", $childExpenses[0]->childid)->get()->first()->name;
+            foreach ($childExpenses as $expense) {
+                $expense->amount = $expense->amount / 100;
+                $temp[$expense["category"]] = $expense;
             }
 
-            array_push($toReturn[$expense["childid"]], $expense);
+            for ($i = 2; $i < 7; $i++) {
+                if (!array_key_exists($i, $temp)) {
+                    $temp[$i] = new Expense();
+                    $temp[$i]->amount = 0;
+                }
+            }
+
+            array_push($toReturn, $temp);
         }
 
         return $toReturn;

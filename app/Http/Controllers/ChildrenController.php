@@ -22,7 +22,8 @@ class ChildrenController extends Controller
             "name" => ["required", "min:3", "max:100"],
             "startDate" => ["required"],
             "endDate" => ["min:0"],
-            "active" => ["required"]
+            "active" => ["required"],
+            "foodCosts" => ["required", "min:0", "max:2000"]
         ];
 
         $fields = $request->validate($validity);
@@ -35,6 +36,7 @@ class ChildrenController extends Controller
         $child->startDate = $startDate;
         $child->endDate = $endDate;
         $child->active = $active;
+        $child->foodCosts = round($fields["foodCosts"] * 100, 0); // only account for pence
         $child->save();
 
         return redirect("/children");

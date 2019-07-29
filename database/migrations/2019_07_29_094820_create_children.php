@@ -19,6 +19,7 @@ class CreateChildren extends Migration
             $table->bigInteger("startDate");
             $table->bigInteger("endDate")->nullable();
             $table->boolean("active")->default(true);
+            $table->integer("foodCosts");
             $table->timestamps();
         });
     }
