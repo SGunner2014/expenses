@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecurring extends Migration
+class CreateRecurrings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateRecurring extends Migration
      */
     public function up()
     {
-        Schema::create('recurring', function (Blueprint $table) {
+        Schema::create('recurrings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text("details");
+            $table->integer("amount");
+            $table->integer("category");
+            $table->boolean("active");
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateRecurring extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recurring');
+        Schema::dropIfExists('recurrings');
     }
 }

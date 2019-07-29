@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Recurring;
+use Illuminate\Http\Request;
+
+class RecurringController extends Controller
+{
+    public function index() {
+        $recurring = Recurring::where("active", "=", true)->get();
+        $inactive = Recurring::where("active", "=", false)->get();
+        return view("recurring.index", compact("recurring", "inactive"));
+    }
+
+    public function create() {
+        return view("recurring.create");
+    }
+
+    public function store(Request $request) {
+        $validator = [
+            "details" => ["required", "min:3", "max:200"],
+            "category" => ["required"],
+            "amount" => ["required", "min:0"]
+        ];
+
+        $fields = $request->validate($validator);
+        $recur = new Recurring();
+        $recur->details = $fields["details"];
+        $recur->category = $fields["category"];
+        $recur->amount = $fields["amount"];
+
+        return redirect("/recurring");
+    }
+}
