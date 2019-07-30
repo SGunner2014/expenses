@@ -35,6 +35,20 @@ class Month extends Model
                     $expense->childid = $child->id;
                     $expense->save();
                 }
+
+                // Now, we need to add the monthly recurring expenses
+                if ($i == 0) {
+                    $recurring = Recurring::where("active", "=", true)->get();
+                    foreach ($recurring as $recur) {
+                        $expense = new Expense();
+                        $expense->type = 3;
+                        $expense->category = $recur->category;
+                        $expense->amount = $recur->amount;
+                        $expense->details = $recur->details;
+                        $expense->weekid = $week->id;
+                        $expense->save();
+                    }
+                }
             }
         }
     }

@@ -17,18 +17,19 @@
             <div class="form-group">
                 <label for="category">Category*</label>
                 <select name="category" id="category" class="form-control">
-                    <option>Food and Drink</option>
-                    <option>Toys and Equipment</option>
-                    <option>Heating and Lighting</option>
-                    <option>Water Rates/Council Tax</option>
-                    <option>Travel/Outings</option>
-                    <option>Miscellaneous</option>
+                    <option value="1">Food and Drink</option>
+                    <option value="2">Toys and Equipment</option>
+                    <option value="3">Heating and Lighting</option>
+                    <option value="4">Water Rates/Council Tax</option>
+                    <option value="5">Travel/Outings</option>
+                    <option value="6">Miscellaneous</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="amount">Amount*</label>
                 <input class="form-control" type="number" step=".01" name="amount" id="amount" required>
             </div>
+            <input type="hidden" name="active" value="on">
             <button class="btn btn-success btn-md" type="submit">Create Cost</button>
         </form>
     </div>

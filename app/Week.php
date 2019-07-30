@@ -25,10 +25,20 @@ class Week extends Model
                 $temp[$expense["category"]] = $expense;
             }
 
+            $ptr = 0;
+
             for ($i = 2; $i < 7; $i++) {
                 if (!array_key_exists($i, $temp)) {
                     $temp[$i] = new Expense();
                     $temp[$i]->amount = 0;
+                } else {
+                    $ptr = $i;
+                }
+            }
+
+            for ($i = 1; $i < 7; $i++) {
+                if ($i != $ptr) {
+                    $temp[$i]->id = $temp[$ptr]->id;
                 }
             }
 
@@ -36,5 +46,13 @@ class Week extends Model
         }
 
         return $toReturn;
+    }
+
+    /**
+     * Returns all associated payments (non-child)
+     */
+    public function getPayments() {
+        $payments = Expense::where("weekid", "=", $this->id)->where("type", "=", 3)->get();
+        return $payments;
     }
 }

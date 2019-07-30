@@ -21,7 +21,8 @@ class RecurringController extends Controller
         $validator = [
             "details" => ["required", "min:3", "max:200"],
             "category" => ["required"],
-            "amount" => ["required", "min:0"]
+            "amount" => ["required", "min:0"],
+            "active" => ["required"]
         ];
 
         $fields = $request->validate($validator);
@@ -29,6 +30,8 @@ class RecurringController extends Controller
         $recur->details = $fields["details"];
         $recur->category = $fields["category"];
         $recur->amount = $fields["amount"];
+        $recur->active = $fields["active"] == "on" ? true : false;
+        $recur->save();
 
         return redirect("/recurring");
     }
