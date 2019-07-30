@@ -9,50 +9,110 @@ class Week extends Model
     /**
      * Returns all expenses for children within the week.
      */
-    public function getChildExpenses() {
-        // We need to find all the expenses for this period and then we need to return these in a sorted array, by each child
-        $weeksExpenses = Expense::where("weekid", "=", $this->id);
-        $childrenExpenses = $weeksExpenses->where("type", "=", 1);
-        $groupedChildrenExpenses = $childrenExpenses->get()->groupBy("childid");
+    public function getExpenses() {
+        // just find all the expenses for this week
+        // regualr child expenses need to come first
+        // then recurring
+        // then one-off
+
+        $childExpenses = Expense::where("weekid", "=", $this->id)->where("type", "=", 1)->get()->groupBy("childid");
+        $recurringExpenses = Expense::where("weekid", "=", $this->id)->where("type", "=", 3)->get();
+        $oneOffs = Expense::where("weekid", "=", $this->id)->where("type", "=", 2)->get();
 
         $toReturn = [];
+        $toReturn["child"] = [];
+        $toReturn["recurring"] = [];
+        $toReturn["oneOff"] = [];
+        $toReturn["total"] = [];
+        $toReturn["total"]["total"] = [
+            "integer" => 0,
+            "display" => "£0.00"
+        ];
 
-        foreach($groupedChildrenExpenses as $childExpenses) {
-            $temp = [];
-            $temp[0] = Child::where("id", "=", $childExpenses[0]->childid)->get()->first()->name;
-            foreach ($childExpenses as $expense) {
-                $expense->amount = $expense->amount / 100;
-                $temp[$expense["category"]] = $expense;
-            }
+        // Process child expense and form a displayable format
+        foreach ($childExpenses as $childExpense) {
+             $toAdd = [];
+             for ($i = 1; $i < 7; $i++) {
+                 $toAdd[$i] = [
+                     "display" => "£0.00",
+                     "integer" => 0
+                 ];
+             }
 
-            $ptr = 0;
+             foreach ($childExpense as $ce) {
+                 $toAdd[$ce->category] = [
+                     "display" => "£" . number_format($ce->amount / 100, 2),
+                     "integer" => $ce->amount
+                 ];
+                 if (!array_key_exists("details", $toAdd)) {
+                     $child = Child::where("id", "=", $ce->childid)->get()->first();
+                     $toAdd["details"] = $child->name;
+                     $toAdd["id"] = $ce->id;
+                 }
+             }
 
-            for ($i = 2; $i < 7; $i++) {
-                if (!array_key_exists($i, $temp)) {
-                    $temp[$i] = new Expense();
-                    $temp[$i]->amount = 0;
-                } else {
-                    $ptr = $i;
-                }
-            }
+             // now, get the total from each section
+             $toAdd["total"] = 0;
+             for ($i = 1; $i < 7; $i++) {
+                 $toAdd["total"] += $toAdd[$i]["integer"];
+             }
+             $toAdd["total"] = [
+                 "display" => "£" . number_format($toAdd["total"] / 100, 2),
+                 "integer" => $toAdd["total"]
+             ];
+             array_push($toReturn["child"], $toAdd);
+         }
+
+        // Process recurring expenses and form a displayable format
+        foreach ($recurringExpenses as $childExpense) {
+            $toAdd = [];
 
             for ($i = 1; $i < 7; $i++) {
-                if ($i != $ptr) {
-                    $temp[$i]->id = $temp[$ptr]->id;
-                }
+                $toAdd[$i] = [
+                    "display" => "£0.00",
+                    "integer" => 0
+                ];
             }
 
-            array_push($toReturn, $temp);
+            $toAdd[$childExpense->category] = [
+                "display" => "£" . number_format($childExpense->amount / 100, 2),
+                "integer" => $childExpense->amount
+            ];
+
+            $toAdd["total"] = [
+                "display" => "£" . number_format($childExpense->amount / 100, 2),
+                "integer" => $childExpense->amount
+            ];
+
+            $toAdd["details"] = $childExpense->details;
+            $toAdd["id"] = $childExpense->id;
+
+            array_push($toReturn["recurring"], $toAdd);
         }
 
-        return $toReturn;
-    }
+        // Process totals and form a displayable format
+        for ($i = 1; $i < 7; $i++) {
+            $toReturn["total"][$i] = [
+                "integer" => 0
+            ];
 
-    /**
-     * Returns all associated payments (non-child)
-     */
-    public function getPayments() {
-        $payments = Expense::where("weekid", "=", $this->id)->where("type", "=", 3)->get();
-        return $payments;
+            // Add in child expenses
+            foreach ($toReturn["child"] as $childExpense) {
+                $toReturn["total"][$i]["integer"] += $childExpense[$i]["integer"];
+            }
+
+            // Add in recurring expenses
+            foreach ($toReturn["recurring"] as $recurring) {
+                $toReturn["total"][$i]["integer"] += $recurring[$i]["integer"];
+            }
+
+
+            $toReturn["total"]["total"]["integer"] += $toReturn["total"][$i]["integer"];
+            $toReturn["total"][$i]["display"] = "£" . number_format($toReturn["total"][$i]["integer"] / 100, 2);
+        }
+
+        $toReturn["total"]["total"]["display"] = "£" . number_format($toReturn["total"]["total"]["integer"] / 100, 2);
+
+        return $toReturn;
     }
 }

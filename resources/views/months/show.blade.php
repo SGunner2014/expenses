@@ -7,6 +7,15 @@
 @section("content")
     <div class="container">
         <h1>{{$month->name}}, {{$year->year}}</h1>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="/years/{{$year->id}}/months/{{$month->id}}/regenerate" class="btn btn-danger btn-sm mb-2">Regenerate Automatic Content</a>
+            </div>
+            <div class="col-sm-9">
+                <p class="text-muted">Caution! This will delete all child payments and recurring payments for this month and cannot be undone!</p>
+            </div>
+        </div>
         <br/>
         @foreach($month->getWeeks() as $week)
             <h4>Week #{{$week->week}}</h4>
@@ -26,32 +35,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($week->getChildExpenses() as $childExpenses)
+                <?php $expenses = $week->getExpenses(); ?>
+                {{-- Show all child-related expenses --}}
+                @foreach($expenses["child"] as $expense)
                     <tr>
                         <td>N/A</td>
-                        <td>{{$childExpenses[0]["name"]}}</td>
-                        <td>£{{number_format($childExpenses[1]->amount, 2, ".", "")}}</td>
-                        <td>£{{number_format($childExpenses[2]->amount, 2, ".", "")}}</td>
-                        <td>£{{number_format($childExpenses[3]->amount, 2, ".", "")}}</td>
-                        <td>£{{number_format($childExpenses[4]->amount, 2, ".", "")}}</td>
-                        <td>£{{number_format($childExpenses[5]->amount, 2, ".", "")}}</td>
-                        <td>£{{number_format($childExpenses[6]->amount, 2, ".", "")}}</td>
-                        <td>tots</td>
-                        <td><a href="/expenses/{{$childExpenses[0]["id"]}}"</td>
+                        <td>{{$expense["details"]}}</td>
+                        <td>{{$expense[1]["display"]}}</td>
+                        <td>{{$expense[2]["display"]}}</td>
+                        <td>{{$expense[3]["display"]}}</td>
+                        <td>{{$expense[4]["display"]}}</td>
+                        <td>{{$expense[5]["display"]}}</td>
+                        <td>{{$expense[6]["display"]}}</td>
+                        <td>{{$expense["total"]["display"]}}</td>
+                        <td><a href="/expenses/{{$expense["id"]}}/edit" class="btn btn-secondary btn-sm">Edit</a></td>
                     </tr>
                 @endforeach
-                @foreach($week->getPayments() as $payment)
+                {{-- Show all recurring expenses --}}
+                @foreach($expenses["recurring"] as $expense)
                     <tr>
                         <td>N/A</td>
-                        <td>{{$payment->details}}</td>
-                        <td>£{{number_format($payment->category == 1 ? $payment->amount : 0, 2, ".", "")}}</td>
-                        <td>£{{number_format($payment->category == 2 ? $payment->amount : 0, 2, ".", "")}}</td>
-                        <td>£{{number_format($payment->category == 3 ? $payment->amount : 0, 2, ".", "")}}</td>
-                        <td>£{{number_format($payment->category == 4 ? $payment->amount : 0, 2, ".", "")}}</td>
-                        <td>£{{number_format($payment->category == 5 ? $payment->amount : 0, 2, ".", "")}}</td>
-                        <td>£{{number_format($payment->category == 6 ? $payment->amount : 0, 2, ".", "")}}</td>
+                        <td>{{$expense["details"]}}</td>
+                        <td>{{$expense[1]["display"]}}</td>
+                        <td>{{$expense[2]["display"]}}</td>
+                        <td>{{$expense[3]["display"]}}</td>
+                        <td>{{$expense[4]["display"]}}</td>
+                        <td>{{$expense[5]["display"]}}</td>
+                        <td>{{$expense[6]["display"]}}</td>
+                        <td>{{$expense["total"]["display"]}}</td>
+                        <td><a href="/expenses/{{$expense["id"]}}/edit" class="btn btn-secondary btn-sm">Edit</a></td>
                     </tr>
                 @endforeach
+                {{-- Show grand total --}}
+                <tr class="table-success">
+                    <td colspan="2"><strong>Total</strong></td>
+                    <td>{{$expenses["total"][1]["display"]}}</td>
+                    <td>{{$expenses["total"][2]["display"]}}</td>
+                    <td>{{$expenses["total"][3]["display"]}}</td>
+                    <td>{{$expenses["total"][4]["display"]}}</td>
+                    <td>{{$expenses["total"][5]["display"]}}</td>
+                    <td>{{$expenses["total"][6]["display"]}}</td>
+                    <td>{{$expenses["total"]["total"]["display"]}}</td>
+                </tr>
                 </tbody>
             </table>
             <br/>

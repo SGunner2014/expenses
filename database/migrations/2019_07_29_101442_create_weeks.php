@@ -17,6 +17,7 @@ class CreateWeeks extends Migration
             $table->bigIncrements('id');
             $table->bigInteger("monthid")->references("id")->on("months");
             $table->tinyInteger("week"); // 1, 2, 3, 4, 5
+            $table->boolean("active")->default(true);
             $table->timestamps();
         });
     }

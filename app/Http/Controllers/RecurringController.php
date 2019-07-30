@@ -29,10 +29,15 @@ class RecurringController extends Controller
         $recur = new Recurring();
         $recur->details = $fields["details"];
         $recur->category = $fields["category"];
-        $recur->amount = $fields["amount"];
+        $recur->amount = round($fields["amount"] * 100, 0);
         $recur->active = $fields["active"] == "on" ? true : false;
         $recur->save();
 
         return redirect("/recurring");
+    }
+
+    public function edit($id) {
+        $payment = Recurring::find($id);
+        return view("recurring.edit", compact("payment"));
     }
 }

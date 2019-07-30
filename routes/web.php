@@ -19,7 +19,8 @@ Route::get("/home", function() {
 });
 Auth::routes();
 
-Route::resource("/years", "YearController");
-Route::resource("/years/{year}/months", "MonthsController");
-Route::resource("/children", "ChildrenController");
-Route::resource("/recurring", "RecurringController");
+Route::resource("/years", "YearController")->middleware("auth");
+Route::resource("/years/{year}/months", "MonthsController")->middleware("auth");
+Route::resource("/children", "ChildrenController")->middleware("auth");
+Route::resource("/recurring", "RecurringController")->middleware("auth");
+Route::resource("/expenses", "ExpensesController")->middleware("auth");

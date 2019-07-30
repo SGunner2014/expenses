@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{$recur->details}}</td>
                         <td>{{$recur->getCategoryText()}}</td>
-                        <td>£{{$recur->amount}}</td>
+                        <td>£{{number_format($recur->amount / 100, 2)}}</td>
                         <td><a href="/recurring/{{$recur->id}}/edit" class="btn btn-primary btn-md">Edit</a></td>
                     </tr>
                 @endforeach
@@ -45,7 +45,7 @@
                     <tr>
                         <td>{{$cost->details}}</td>
                         <td>{{$cost->getCategoryText()}}</td>
-                        <td>{{$cost->amount}}</td>
+                        <td>£{{number_format($cost->amount / 100, 2)}}</td>
                         <td><a href="/recurring/{{$cost->id}}/edit" class="btn btn-primary btn-md">Edit</a></td>
                     </tr>
                 @endforeach
