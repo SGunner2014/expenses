@@ -10,7 +10,7 @@
         <hr/>
         <div class="row">
             <div class="col-sm-3">
-                <a href="/years/{{$year->id}}/months/{{$month->id}}/regenerate" class="btn btn-danger btn-sm mb-2">Regenerate Automatic Content</a>
+                <a href="/years/{{$year->id}}/months/{{$month->id}}/regenerate" class="disabled btn btn-danger btn-sm mb-2">Regenerate Automatic Content</a>
             </div>
             <div class="col-sm-9">
                 <p class="text-muted">Caution! This will delete all child payments and recurring payments for this month and cannot be undone!</p>

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expense extends Model
 {
+    protected $guarded = [];
+
     public function getWeekNo() {
         return Week::find($this->weekid)->week;
     }
