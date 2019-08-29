@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-gb">
 <head>
-    <link rel="stylesheet" href="{{asset("css/bootstrap.min.css")}}"/>
+    <link rel="stylesheet" href="{{secure_asset("css/bootstrap.min.css")}}"/>
     <title>@yield("page-title")</title>
 </head>
 
