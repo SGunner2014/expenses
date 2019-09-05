@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Year;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class YearController extends Controller
 {
     public function index() {
-        $years = Year::all()->sortByDesc("created_at")->take(5);
+        $years = Year::all()->where("owner_id", auth()->id())->sortByDesc("created_at")->take(5);
 
         return view("years.index", compact("years"));
     }
@@ -25,17 +26,17 @@ class YearController extends Controller
      * @param Request $request The request received
      */
     public function store(Request $request) {
-        $yearNo = $request->year;
-        if (count(Year::where("year", "=", $yearNo)->get()) == 0) {
-            // When we create a new year, we also need to create the associated months!
-            $year = Year::create($request->all());
-            $year->save();
-            $year->createAssociatedMonths();
+        // When we create a new year, we also need to create the associated months!
+        $validator = [
+            "year" => "required"
+        ];
+        $fields = $request->validate($validator);
+        $fields["owner_id"] = Auth::id();
+        $year = Year::create($fields);
+        $year->save();
+        $year->createAssociatedMonths();
 
-            return redirect("/years/" . $year->id);
-        } else {
-            return redirect("/years/create");
-        }
+        return redirect("/years/" . $year->id);
     }
 
     /**
@@ -43,6 +44,7 @@ class YearController extends Controller
      * @param Year $year
      */
     public function show(Year $year) {
+        $this->authorize("update", $year);
         return view("years.show", compact("year"));
     }
 }

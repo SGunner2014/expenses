@@ -15,6 +15,8 @@ class CreateRecurrings extends Migration
     {
         Schema::create('recurrings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("owner_id");
+            $table->foreign("owner_id")->references("id")->on("users");
             $table->text("details");
             $table->integer("amount");
             $table->integer("category");

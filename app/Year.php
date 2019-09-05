@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Year extends Model
 {
@@ -33,6 +34,7 @@ class Year extends Model
                 $month->yearid = $this->id;
                 $month->month = $i + 1;
                 $month->name = $months[$i];
+                $month->owner_id = Auth::id();
                 $month->save();
                 $month->createAssociatedWeeks();
             }

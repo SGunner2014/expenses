@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Child;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChildrenController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth")->only(["update"]);
+    }
+
     public function index() {
-        $active = Child::where("active", "=", true)->get()->sortByDesc("startDate");
-        $inactive = Child::where("active", "=", false)->get()->sortByDesc("endDate");
+        $active = Child::where("active", "=", true)->where("owner_id", auth()->id())->get()->sortByDesc("startDate");
+        $inactive = Child::where("active", "=", false)->where("owner_id", auth()->id())->get()->sortByDesc("endDate");
         return view("children.index", compact("active", "inactive"));
     }
 
@@ -37,12 +43,15 @@ class ChildrenController extends Controller
         $child->endDate = $endDate;
         $child->active = $active;
         $child->foodCosts = round($fields["foodCosts"] * 100, 0); // only account for pence
+        $child->owner_id = Auth::id();
         $child->save();
 
         return redirect("/children");
     }
 
     public function update(Child $child, Request $request) {
+        $this->authorize("update", $child);
+
         $validator = [
             "active" => ["required"]
         ];

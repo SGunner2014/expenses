@@ -15,6 +15,8 @@ class CreateChildren extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("owner_id");
+            $table->foreign("owner_id")->references("id")->on("users");
             $table->text("name");
             $table->bigInteger("startDate");
             $table->bigInteger("endDate")->nullable();

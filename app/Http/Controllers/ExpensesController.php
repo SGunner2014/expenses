@@ -14,6 +14,8 @@ class ExpensesController extends Controller
     }
 
     public function update(Expense $expense, Request $request) {
+        $this->authorize("update", $expense);
+
         $validator = [
             "amount" => ["required"],
             "category" => ["required"]

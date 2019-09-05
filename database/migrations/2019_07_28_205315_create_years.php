@@ -15,6 +15,8 @@ class CreateYears extends Migration
     {
         Schema::create('years', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("owner_id");
+            $table->foreign("owner_id")->references("id")->on("users");
             $table->integer("year"); // 2018, 2019, etc...
             $table->timestamps();
         });

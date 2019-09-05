@@ -15,6 +15,8 @@ class CreateWeeks extends Migration
     {
         Schema::create('weeks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("owner_id");
+            $table->foreign("owner_id")->references("id")->on("users");
             $table->bigInteger("monthid")->references("id")->on("months");
             $table->tinyInteger("week"); // 1, 2, 3, 4, 5
             $table->boolean("active")->default(true);

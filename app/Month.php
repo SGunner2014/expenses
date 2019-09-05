@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Month extends Model
 {
@@ -22,6 +23,7 @@ class Month extends Model
                 $week = new Week();
                 $week->week = $i + 1;
                 $week->monthid = $this->id;
+                $week->owner_id = Auth::id();
                 $week->save();
 
                 // Now, time to create the recurring children for this week!
@@ -33,6 +35,7 @@ class Month extends Model
                     $expense->amount = $child->foodCosts;
                     $expense->weekid = $week->id;
                     $expense->childid = $child->id;
+                    $expense->owner_id = Auth::id();
                     $expense->save();
                 }
 
@@ -46,6 +49,7 @@ class Month extends Model
                         $expense->amount = $recur->amount;
                         $expense->details = $recur->details;
                         $expense->weekid = $week->id;
+                        $expense->owner_id = Auth::id();
                         $expense->save();
                     }
                 }

@@ -15,6 +15,8 @@ class CreateMonths extends Migration
     {
         Schema::create('months', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger("owner_id");
+            $table->foreign("owner_id")->references("id")->on("users");
             $table->bigInteger("yearid")->references("id")->on("years"); // The year this month belongs to
             $table->text("name"); // Text form of month (January, etc.)
             $table->tinyInteger("month"); // 1 = January, etc.
