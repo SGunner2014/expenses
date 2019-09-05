@@ -16,7 +16,7 @@ class Month extends Model
      * Checks to see if the associated weeks have already been registered, and if not, registers them.
      */
     public function createAssociatedWeeks() {
-        $children = Child::where("active", "=", true)->get();
+        $children = Child::where("active", "=", true)->where("owner_id", auth()->id())->get();
 
         if (count(Week::where("monthid", "=", $this->id)->get()) == 0) {
             for ($i = 0; $i < 5; $i++) {
@@ -41,7 +41,7 @@ class Month extends Model
 
                 // Now, we need to add the monthly recurring expenses
                 if ($i == 0) {
-                    $recurring = Recurring::where("active", "=", true)->get();
+                    $recurring = Recurring::where("active", "=", true)->where("owner_id", auth()->id())->get();
                     foreach ($recurring as $recur) {
                         $expense = new Expense();
                         $expense->type = 3;
