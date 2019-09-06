@@ -1,7 +1,7 @@
 @extends("layouts.default")
 
 @section("page-title")
-    Hello, world
+    Expenses
 @endsection
 
 @section("content")

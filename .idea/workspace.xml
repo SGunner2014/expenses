@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0db5d58-26fd-486d-b193-7312ce714770" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Policies/ChildPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/ExpensePolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/MonthPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/RecurringPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/WeekPolicy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Policies/YearPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MonthsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MonthsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecurringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecurringController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/YearController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/YearController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Month.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Month.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Year.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Year.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_28_205315_create_years.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_28_205315_create_years.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_094820_create_children.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_094820_create_children.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_095101_create_months.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_095101_create_months.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_101442_create_weeks.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_101442_create_weeks.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_101838_create_expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_101838_create_expenses.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_145556_create_recurrings.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_145556_create_recurrings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -192,6 +173,7 @@
       <workItem from="1566968793494" duration="553000" />
       <workItem from="1567570522164" duration="2196000" />
       <workItem from="1567642463571" duration="794000" />
+      <workItem from="1567716180803" duration="789000" />
     </task>
     <servers />
   </component>
