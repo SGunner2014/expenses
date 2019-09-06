@@ -7,6 +7,7 @@
 @section("content")
     <div class="container">
         <h1>Register a new child</h1>
+        <p class="text-muted">This will register a new child in the system that will then automatically be accounted for each month when generating a new year in the system. Each child will appear once for each week in each month.</p>
         <hr/>
         <form action="/children" method="post">
             @csrf

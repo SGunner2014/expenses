@@ -15,6 +15,16 @@
             <div class="col-sm-9">
                 <p class="text-muted">Caution! This will delete all child payments and recurring payments for this month and cannot be undone!</p>
             </div>
+            <div class="col-sm-3">
+                <form action="/years/{{$year->id}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                    <button type="submit" class="btn btn-danger btn-sm mb-2">Delete Year</button>
+                </form>
+            </div>
+            <div class="col-sm-9">
+                <p class="text-muted">Caution! This will delete the year and all data associated with this year! This cannot be undone!</p>
+            </div>
         </div>
         @foreach($year->getMonths() as $month)
             <div class="card mb-2">

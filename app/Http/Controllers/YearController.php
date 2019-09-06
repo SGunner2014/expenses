@@ -42,9 +42,23 @@ class YearController extends Controller
     /**
      * Shows an existing year
      * @param Year $year
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Year $year) {
         $this->authorize("update", $year);
         return view("years.show", compact("year"));
+    }
+
+    /**
+     * Removes a year from the database
+     * @param Year $year
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroy(Year $year) {
+        $this->authorize("update", $year);
+        $year->delete();
+        return redirect("/years");
     }
 }

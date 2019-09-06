@@ -11,12 +11,8 @@
 |
 */
 
-Route::get("/", function() {
-    return view("index");
-});
-Route::get("/home", function() {
-    return view("index");
-});
+Route::get("/", "HomeController@index");
+Route::get("/home", "HomeController@index");
 Auth::routes();
 
 Route::resource("/years", "YearController")->middleware("auth");

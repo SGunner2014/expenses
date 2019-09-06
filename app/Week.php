@@ -14,7 +14,6 @@ class Week extends Model
         // regualr child expenses need to come first
         // then recurring
         // then one-off
-
         $childExpenses = Expense::where("weekid", "=", $this->id)->where("type", "=", 1)->get()->groupBy("childid");
         $recurringExpenses = Expense::where("weekid", "=", $this->id)->where("type", "=", 3)->get();
         $oneOffs = Expense::where("weekid", "=", $this->id)->where("type", "=", 2)->get();
@@ -22,7 +21,7 @@ class Week extends Model
         $toReturn = [];
         $toReturn["child"] = [];
         $toReturn["recurring"] = [];
-        $toReturn["oneOff"] = [];
+        $toReturn["oneoff"] = [];
         $toReturn["total"] = [];
         $toReturn["total"]["total"] = [
             "integer" => 0,
@@ -90,6 +89,33 @@ class Week extends Model
             array_push($toReturn["recurring"], $toAdd);
         }
 
+        // Process one-off expenses and form a displayable format
+        foreach ($oneOffs as $expense) {
+            $toAdd = [];
+
+            for ($i = 1; $i < 7; $i++) {
+                $toAdd[$i] = [
+                    "display" => "£0.00",
+                    "integer" => 0
+                ];
+            }
+
+            $toAdd[$expense->category] = [
+                "display" => "£" . number_format($expense->amount / 100, 2),
+                "integer" => $expense->amount
+            ];
+
+            $toAdd["total"] = [
+                "display" => "£" . number_format($expense->amount / 100, 2),
+                "integer" => $expense->amount
+            ];
+
+            $toAdd["details"] = $expense->details;
+            $toAdd["id"] = $expense->id;
+
+            array_push($toReturn["oneoff"], $toAdd);
+        }
+
         // Process totals and form a displayable format
         for ($i = 1; $i < 7; $i++) {
             $toReturn["total"][$i] = [
@@ -106,6 +132,10 @@ class Week extends Model
                 $toReturn["total"][$i]["integer"] += $recurring[$i]["integer"];
             }
 
+            foreach ($toReturn["oneoff"] as $oneoff) {
+                $toReturn["total"][$i]["integer"] += $oneoff[$i]["integer"];
+            }
+
 
             $toReturn["total"]["total"]["integer"] += $toReturn["total"][$i]["integer"];
             $toReturn["total"][$i]["display"] = "£" . number_format($toReturn["total"][$i]["integer"] / 100, 2);
@@ -114,5 +144,15 @@ class Week extends Model
         $toReturn["total"]["total"]["display"] = "£" . number_format($toReturn["total"]["total"]["integer"] / 100, 2);
 
         return $toReturn;
+    }
+
+    /**
+     * Returns the full human-readable name for this week
+     */
+    public function getFullName() {
+        $month = Month::find($this->monthid);
+        $year = Year::find($month->yearid);
+
+        return $month->name . ", " . $year->year;
     }
 }

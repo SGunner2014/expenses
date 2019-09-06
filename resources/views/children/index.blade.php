@@ -7,7 +7,7 @@
 @section("content")
     <div class="container">
         <h1>Children</h1>
-        <h3>Here you can view currently active children, as well as modify existing ones.</h3>
+        <h5>Here you can view currently active children, as well as modify existing ones.</h5>
         <hr/>
         <a class="btn btn-success btn-md mb-2" href="/children/create">Register a new child</a>
         <h5>Active Children</h5>

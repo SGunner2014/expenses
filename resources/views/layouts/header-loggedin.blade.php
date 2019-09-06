@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/children">Children</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/recurring">Recurring Expenses</a>
+            </li>
         </ul>
         <span class="navbar-text">
             <form action="/logout" method="post">
