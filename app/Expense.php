@@ -8,6 +8,10 @@ class Expense extends Model
 {
     protected $guarded = [];
 
+    public function getDay() {
+        return Day::find($this->dayid);
+    }
+
     public function getWeekNo() {
         return Week::find($this->weekid)->week;
     }

@@ -155,4 +155,28 @@ class Week extends Model
 
         return $month->name . ", " . $year->year;
     }
+
+    /**
+     * Generates the associated days for a week
+     * @param $noDays integer The number of days in the week
+     * @param $monthNo integer The starting number for the first day of the week
+     * @param $month integer The month that these days form
+     * @param $year integer The year that these days form
+     * @return int The starting number for the first day
+     */
+    public function generateDays($noDays, $monthNo, $month, $year) {
+        for ($i = 0; $i < $noDays; $i++) {
+            // form a date
+            $humanReadable = ($monthNo + $i + 1) . "-" . $month . "-" . $year;
+            // convert to epoch form
+            $dte = strtotime($humanReadable);
+            $day = new Day();
+            $day->weekid = $this->id;
+            $day->monthNo = $monthNo + $i + 1;
+            $day->timestamp = $dte;
+            $day->save();
+        }
+
+        return $monthNo + 1;
+    }
 }

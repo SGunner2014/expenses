@@ -21,6 +21,7 @@ class CreateExpenses extends Migration
             $table->tinyInteger("category"); // 1 = food and drink, 2 = toys and equip., etc.
             $table->bigInteger("date")->nullable();
             $table->bigInteger("weekid")->references("id")->on("weeks");
+            $table->bigInteger("dayid")->references("id")->on("days");
             $table->text("details")->nullable();
             $table->integer("amount");
             $table->bigInteger("childid")->references("id")->on("children")->nullable();

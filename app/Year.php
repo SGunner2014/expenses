@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\custom\YearUtilities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +12,12 @@ class Year extends Model
 
     /**
      * Checks to see if the associated months have already been registered, and if not, registers them.
+     * @param $year integer The number of the year, e.g. 2019, 2020 etc...
      */
-    public function createAssociatedMonths() {
+    public function createAssociatedMonths($year) {
+        $yearUtilities = new YearUtilities($year);
+        $monthNums = $yearUtilities->getMonths(); // Get the days for each month
+        $counter = 1;
         $months = [
             "January",
             "February",
@@ -28,16 +33,17 @@ class Year extends Model
             "December"
         ];
 
-        if (count(Month::where("yearid", "=", $this->id)->get()) == 0) {
-            for ($i = 0; $i < count($months); $i++) {
-                $month = new Month();
-                $month->yearid = $this->id;
-                $month->month = $i + 1;
-                $month->name = $months[$i];
-                $month->owner_id = Auth::id();
-                $month->save();
-                $month->createAssociatedWeeks();
-            }
+        // Loop through each month and register the weeks and then the days
+        foreach ($monthNums as $monthNum) {
+            $month = new Month();
+            $month->yearid = $this->id;
+            $month->month = $counter;
+            $month->name = $months[$counter - 1];
+            $month->owner_id = Auth::id();
+            $month->save();
+            $month->createAssociatedWeeks($monthNum);
+
+            $counter++;
         }
     }
 

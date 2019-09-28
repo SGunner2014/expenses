@@ -2,21 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0db5d58-26fd-486d-b193-7312ce714770" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/expenses/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Day.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/custom/YearUtilities.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_09_27_032634_create_days.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Expense.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Expense.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/YearController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/YearController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Month.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Month.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Week.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Week.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/children/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/children/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/children/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/children/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Year.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Year.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_101838_create_expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_101838_create_expenses.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header-loggedin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header-loggedin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/months/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/months/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recurring/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recurring/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/years/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/years/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,6 +139,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -186,7 +187,10 @@
       <workItem from="1566968793494" duration="553000" />
       <workItem from="1567570522164" duration="2196000" />
       <workItem from="1567642463571" duration="794000" />
-      <workItem from="1567716180803" duration="6322000" />
+      <workItem from="1567716180803" duration="7016000" />
+      <workItem from="1569553638821" duration="85000" />
+      <workItem from="1569553735490" duration="3823000" />
+      <workItem from="1569621557880" duration="3617000" />
     </task>
     <servers />
   </component>

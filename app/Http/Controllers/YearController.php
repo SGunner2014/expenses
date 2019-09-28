@@ -34,7 +34,7 @@ class YearController extends Controller
         $fields["owner_id"] = Auth::id();
         $year = Year::create($fields);
         $year->save();
-        $year->createAssociatedMonths();
+        $year->createAssociatedMonths($fields["year"]);
 
         return redirect("/years/" . $year->id);
     }
