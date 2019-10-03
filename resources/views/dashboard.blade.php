@@ -5,7 +5,7 @@
 @endsection
 
 @section("content")
-    <div class="container pt-4">
+    <div class="container">
         <h1>Expenses</h1>
         <p class="text-muted">Welcome to expenses. You can track children (when they join and leave), track recurring expenses each month and automatically generate your expenses. The system offers a great degree of flexibility with each month/week. The core features of the system can be accessed below.</p>
         <hr/>

@@ -12,7 +12,11 @@
     @include("layouts.header-loggedout")
 @endif
 
-@yield("content")
+<br/>
+
+<div class="mb-lg-5 pb-lg-4">
+    @yield("content")
+</div>
 
 @include("layouts.footer")
 

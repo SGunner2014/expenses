@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Day;
 use App\Expense;
 use App\Year;
 use Illuminate\Http\Request;
@@ -66,6 +67,9 @@ class ExpensesController extends Controller
         $fields["owner_id"] = auth()->id();
         $fields["type"] = 2;
         $fields["amount"] = round($fields["amount"], 0) * 100;
+        $day = Day::where("weekid", $week->id)->get()->sortBy("timestamp")->first();
+        $fields["dayid"] = $day->id;
+        $fields["date"] = $day->timestamp;
         $expense = Expense::create($fields);
         $expense->save();
         $month = Month::find($week->monthid);

@@ -41,6 +41,7 @@ class Month extends Model
                     $expense->amount = $child->foodCosts;
                     $expense->weekid = $week->id;
                     $expense->dayid = $weekDayNo;
+                    $expense->date = $week->getFirstDay()->timestamp;
                     $expense->childid = $child->id;
                     $expense->owner_id = Auth::id();
                     $expense->save();
@@ -56,46 +57,12 @@ class Month extends Model
                         $expense->details = $recur->details;
                         $expense->weekid = $week->id;
                         $expense->owner_id = Auth::id();
+                        $expense->dayid = $weekDayNo;
+                        $expense->date = $week->getFirstDay()->timestamp;
                         $expense->save();
                     }
                 }
             }
-
-//            for ($i = 0; $i < 5; $i++) {
-//                $week = new Week();
-//                $week->week = $i + 1;
-//                $week->monthid = $this->id;
-//                $week->owner_id = Auth::id();
-//                $week->save();
-//
-//                // Now, time to create the recurring children for this week!
-////                foreach ($children as $child) {
-////                    // fetch food & drink, create expense
-////                    $expense = new Expense();
-////                    $expense->type = 1;
-////                    $expense->category = 1;
-////                    $expense->amount = $child->foodCosts;
-////                    $expense->weekid = $week->id;
-////                    $expense->childid = $child->id;
-////                    $expense->owner_id = Auth::id();
-////                    $expense->save();
-////                }
-//
-//                // Now, we need to add the monthly recurring expenses
-//                if ($i == 0) {
-//                    $recurring = Recurring::where("active", "=", true)->where("owner_id", auth()->id())->get();
-//                    foreach ($recurring as $recur) {
-//                        $expense = new Expense();
-//                        $expense->type = 3;
-//                        $expense->category = $recur->category;
-//                        $expense->amount = $recur->amount;
-//                        $expense->details = $recur->details;
-//                        $expense->weekid = $week->id;
-//                        $expense->owner_id = Auth::id();
-//                        $expense->save();
-//                    }
-//                }
-//            }
         }
     }
 

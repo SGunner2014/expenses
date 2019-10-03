@@ -39,7 +39,7 @@
                 {{-- Show all child-related expenses --}}
                 @foreach($expenses["child"] as $expense)
                     <tr>
-                        <td>N/A</td>
+                        <td>{{$expense["date"]}}</td>
                         <td>{{$expense["details"]}}</td>
                         <td>{{$expense[1]["display"]}}</td>
                         <td>{{$expense[2]["display"]}}</td>
@@ -61,7 +61,7 @@
                 {{-- Show all recurring expenses --}}
                 @foreach($expenses["recurring"] as $expense)
                     <tr>
-                        <td>N/A</td>
+                        <td>{{$expense["date"]}}</td>
                         <td>{{$expense["details"]}}</td>
                         <td>{{$expense[1]["display"]}}</td>
                         <td>{{$expense[2]["display"]}}</td>
@@ -82,7 +82,7 @@
                 @endforeach
                 @foreach($expenses["oneoff"] as $expense)
                     <tr>
-                        <td>N/A</td>
+                        <td>{{$expense["date"]}}</td>
                         <td>{{$expense["details"]}}</td>
                         <td>{{$expense[1]["display"]}}</td>
                         <td>{{$expense[2]["display"]}}</td>

@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Week extends Model
 {
     /**
+     * Returns the first day of the week
+     */
+    public function getFirstDay() {
+        return Day::where("weekid", $this->id)->get()->sortBy("timestamp")->first();
+    }
+
+    /**
      * Returns all expenses for children within the week.
      */
     public function getExpenses() {
@@ -47,6 +54,7 @@ class Week extends Model
                      $child = Child::where("id", "=", $ce->childid)->get()->first();
                      $toAdd["details"] = $child->name;
                      $toAdd["id"] = $ce->id;
+                     $toAdd["date"] = date("d/m/Y", $ce->date);
                  }
              }
 
@@ -57,7 +65,7 @@ class Week extends Model
              }
              $toAdd["total"] = [
                  "display" => "£" . number_format($toAdd["total"] / 100, 2),
-                 "integer" => $toAdd["total"]
+                 "integer" => $toAdd["total"],
              ];
              array_push($toReturn["child"], $toAdd);
          }
@@ -86,6 +94,9 @@ class Week extends Model
             $toAdd["details"] = $childExpense->details;
             $toAdd["id"] = $childExpense->id;
 
+            // Now, format the date
+            $toAdd["date"] = date("d/m/Y", $childExpense->date);
+
             array_push($toReturn["recurring"], $toAdd);
         }
 
@@ -112,6 +123,7 @@ class Week extends Model
 
             $toAdd["details"] = $expense->details;
             $toAdd["id"] = $expense->id;
+            $toAdd["date"] = date("d/m/Y", $expense->date);
 
             array_push($toReturn["oneoff"], $toAdd);
         }
