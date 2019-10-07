@@ -29,7 +29,10 @@
         @foreach($year->getMonths() as $month)
             <div class="card mb-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{$month->name}}</h5>
+                    <div class="row">
+                        <h5 class="card-title col-sm-6">{{$month->name}}</h5>
+                        <p class="text-muted text-right col-sm-6">({{$month->literalYear}})</p>
+                    </div>
                     <a href="/years/{{$year->id}}/months/{{$month->id}}" class="btn btn-success btn-md">View Month >></a>
                 </div>
             </div>

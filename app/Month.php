@@ -16,7 +16,7 @@ class Month extends Model
      * Checks to see if the associated weeks have already been registered, and if not, registers them.
      * @param $noDays integer The number of days in the month
      */
-    public function createAssociatedWeeks($noDays) {
+    public function createAssociatedWeeks($noDays, $yearNum) {
         $children = Child::where("active", "=", true)->where("owner_id", auth()->id())->get();
         $noWeeks = ceil($noDays / 7); // Get the number of weeks and round it up
         $remainder = $noDays % 7; // See how many days we need in the last week

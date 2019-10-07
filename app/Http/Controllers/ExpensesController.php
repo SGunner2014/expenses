@@ -66,7 +66,7 @@ class ExpensesController extends Controller
         $fields["weekid"] = $week->id;
         $fields["owner_id"] = auth()->id();
         $fields["type"] = 2;
-        $fields["amount"] = round($fields["amount"], 0) * 100;
+        $fields["amount"] = round($fields["amount"] * 100, 0);
         $day = Day::where("weekid", $week->id)->get()->sortBy("timestamp")->first();
         $fields["dayid"] = $day->id;
         $fields["date"] = $day->timestamp;

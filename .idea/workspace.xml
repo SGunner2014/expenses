@@ -5,13 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExpensesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Month.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Month.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Week.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Week.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header-loggedin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header-loggedin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header-loggedout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header-loggedout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/months/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/months/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Year.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Year.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_095101_create_months.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_095101_create_months.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +182,10 @@
       <workItem from="1569553735490" duration="3823000" />
       <workItem from="1569621557880" duration="5494000" />
       <workItem from="1569693766205" duration="1430000" />
-      <workItem from="1570079291194" duration="1609000" />
+      <workItem from="1570079291194" duration="1873000" />
+      <workItem from="1570121226910" duration="2447000" />
+      <workItem from="1570426048470" duration="64000" />
+      <workItem from="1570426572831" duration="1694000" />
     </task>
     <servers />
   </component>
