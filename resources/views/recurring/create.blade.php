@@ -30,8 +30,28 @@
                 <label for="amount">Amount*</label>
                 <input class="form-control" type="number" step=".01" name="amount" id="amount" required>
             </div>
+            <div class="form-group">
+                <label for="monthly">Monthly? (if not, weekly)*</label>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input class="form-control left" type="checkbox" name="monthly" id="monthly" checked>
+                    </div>
+                    <div class="col-sm-11"></div>
+                </div>
+            </div>
             <input type="hidden" name="active" value="on">
             <button class="btn btn-success btn-md" type="submit">Create Cost</button>
         </form>
+        @if($errors->any())
+            <br/>
+            <div class="alert alert-danger">
+                <p><strong>The following errors must be corrected before continuing:</strong></p>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 @endsection

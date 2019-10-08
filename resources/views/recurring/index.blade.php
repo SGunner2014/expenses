@@ -16,6 +16,7 @@
                     <th scope="col">Details</th>
                     <th scope="col">Category</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Monthly?</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                         <td>{{$recur->details}}</td>
                         <td>{{$recur->getCategoryText()}}</td>
                         <td>£{{number_format($recur->amount / 100, 2)}}</td>
+                        <td>{{$recur->monthly ? "Yes" : "No"}}</td>
                         <td><a href="/recurring/{{$recur->id}}/edit" class="btn btn-primary btn-md">Edit</a></td>
                     </tr>
                 @endforeach
@@ -37,6 +39,7 @@
                     <th scope="col">Details</th>
                     <th scope="col">Category</th>
                     <th scope="col">Amount</th>
+                    <th scope="col">Monthly?</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -46,6 +49,7 @@
                         <td>{{$cost->details}}</td>
                         <td>{{$cost->getCategoryText()}}</td>
                         <td>£{{number_format($cost->amount / 100, 2)}}</td>
+                        <td>{{$cost->monthly ? "Yes" : "No"}}</td>
                         <td><a href="/recurring/{{$cost->id}}/edit" class="btn btn-primary btn-md">Edit</a></td>
                     </tr>
                 @endforeach

@@ -47,8 +47,9 @@ class Month extends Model
                     $expense->save();
                 }
 
+                // account for monthly recurring expenses
                 if ($i == 0) {
-                    $recurring = Recurring::where("active", "=", true)->where("owner_id", auth()->id())->get();
+                    $recurring = Recurring::where("active", "=", true)->where("monthly", true)->where("owner_id", auth()->id())->get();
                     foreach ($recurring as $recur) {
                         $expense = new Expense();
                         $expense->type = 3;
@@ -61,6 +62,21 @@ class Month extends Model
                         $expense->date = $week->getFirstDay()->timestamp;
                         $expense->save();
                     }
+                }
+
+                // account for weekly recurring expenses
+                $weeklies = Recurring::where("active", true)->where("monthly", false)->where("owner_id", auth()->id())->get();
+                foreach ($weeklies as $weekly) {
+                    $expense = new Expense();
+                    $expense->type = 3;
+                    $expense->category = $weekly->category;
+                    $expense->amount = $weekly->amount;
+                    $expense->details = $weekly->details;
+                    $expense->weekid = $week->id;
+                    $expense->owner_id = auth()->id();
+                    $expense->dayid = $weekDayNo;
+                    $expense->date = $week->getFirstDay()->timestamp;
+                    $expense->save();
                 }
             }
         }

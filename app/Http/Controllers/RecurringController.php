@@ -37,6 +37,7 @@ class RecurringController extends Controller
         $recur->amount = round($fields["amount"] * 100, 0);
         $recur->active = $fields["active"] == "on" ? true : false;
         $recur->owner_id = Auth::id();
+        $recur->monthly = isset($fields["monthly"]) ? true : false;
         $recur->save();
 
         return redirect("/recurring");

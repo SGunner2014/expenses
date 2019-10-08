@@ -21,6 +21,7 @@ class CreateRecurrings extends Migration
             $table->integer("amount");
             $table->integer("category");
             $table->boolean("active");
+            $table->boolean("monthly")->default(true);
             $table->timestamps();
         });
     }
