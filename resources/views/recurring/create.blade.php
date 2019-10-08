@@ -7,7 +7,7 @@
 @section("content")
     <div class="container">
         <h1>Create New Recurring Cost</h1>
-        <p class="text-muted">This will create a new recurring cost - this will automatically be accounted for each month when generating a new year in the system. As such, it will only appear for the first week of the month.</p>
+        <p class="text-muted">This will create a new recurring cost - this will automatically be accounted for each month when generating a new year in the system. You can decide whether it is a weekly expense or a monthly expense.</p>
         <hr/>
         <form method="post" action="/recurring">
             @csrf

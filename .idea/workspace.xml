@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0db5d58-26fd-486d-b193-7312ce714770" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RecurringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RecurringController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Month.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Month.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_145556_create_recurrings.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_145556_create_recurrings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/recurring/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recurring/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/recurring/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/recurring/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +182,7 @@
       <workItem from="1570121226910" duration="2447000" />
       <workItem from="1570426048470" duration="64000" />
       <workItem from="1570426572831" duration="3073000" />
-      <workItem from="1570517314471" duration="2010000" />
+      <workItem from="1570517314471" duration="2255000" />
     </task>
     <servers />
   </component>
