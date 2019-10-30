@@ -7,6 +7,9 @@
             <div class="col-sm-3">
                 Build 17.
             </div>
+            <div class="col-sm-6">
+                Report any errors to me <a href="mailto:me@sgunner.me">here.</a>
+            </div>
         </div>
     </div>
 </footer>
